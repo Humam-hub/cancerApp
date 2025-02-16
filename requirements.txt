@@ -4,5 +4,5 @@ groq
 pandas
 numpy
 plotly
-
+gradio_client
 
