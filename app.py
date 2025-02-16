@@ -39,6 +39,7 @@ def home_page():
         - **Meal Planning**: Cancer-friendly nutrition guidance
         - **Emotional Support**: AI-powered emotional companion
         - **Cancer Education**: Interactive quiz and learning resources
+        - **Image Analysis**: AI-powered breast cancer classification
         
         Navigate through our modules using the sidebar to explore our innovative solutions.
         """)
@@ -46,7 +47,7 @@ def home_page():
     # Featured Modules Section
     st.markdown("## Our Modules")
     
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
         st.markdown("""
@@ -65,6 +66,18 @@ def home_page():
         ### 🤗 Emotional Support
         AI-powered emotional support companion
         """)
+    
+    with col4:
+        st.markdown("""
+        ### 📚 Cancer Quiz
+        Interactive learning and knowledge testing
+        """)
+    
+    with col5:
+        st.markdown("""
+        ### 🔬 Image Analysis
+        Breast cancer classification tool
+        """)
 
 def main():
     # Must be the first Streamlit command
@@ -74,10 +87,17 @@ def main():
         layout="wide"
     )
 
-    # Route to the correct page based on navigation state
+    # Initialize session state variables
     if 'current_page' not in st.session_state:
         st.session_state.current_page = 'home'
+    if 'follow_up_data' not in st.session_state:
+        st.session_state.follow_up_data = []
+    if 'reminders' not in st.session_state:
+        st.session_state.reminders = []
+    if 'patient_data' not in st.session_state:
+        st.session_state.patient_data = {}
 
+    # Route to the correct page based on navigation state
     if st.session_state.current_page == 'home':
         home_page()
     elif st.session_state.current_page == 'patient_management':
